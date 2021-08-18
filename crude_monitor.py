@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import requests
+import pandas as pd
+import os
 
 URL = "https://www.crudemonitor.ca/savePHPExcel.php"
 
@@ -35,3 +37,11 @@ form_data = {
 
 data = requests.post(url=URL, data=form_data)
 
+file = open("Density.csv", "wb")
+file.write(data.content)
+file.close()
+
+df = pd.read_csv('Density.csv', usecols = ['Date', 'Density (kg/m^3)'])
+df.rename(columns = {'Density (kg/m^3)':'Density'}, inplace = True)
+
+os.remove('Density.csv')
