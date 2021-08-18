@@ -7,15 +7,15 @@ import os
 URL = "https://www.crudemonitor.ca/savePHPExcel.php"
 
 print("Enter the name of your crude oil and its acronym:")
-name = input()
-acronym = input()
+crude_name = input()
+crude_acronym = input()
 
-name.title()
-acronym.upper()
+crude_name.title()
+crude_acronym.upper()
 
 print("Enter the start and end dates for your search, in the format DDMMYYYY:")
-date1 = input()
-date2 = input()
+start_date = input()
+end_date = input()
 
 database = "crudes"
 
@@ -23,13 +23,13 @@ form_data = {
     "date1noscript": "",
     "date2noscript": "",
     "trendProperty": "AbsoluteDensity",
-    "acr": acronym,
-    "name": name,
+    "acr": crude_acronym,
+    "name": crude_name,
     "db": database,
     "basicanalysis[]": "AbsoluteDensity",
     "options": "on",
-    "date1": date1,
-    "date2": date2,
+    "date1": start_date,
+    "date2": end_date,
     "format": "Export.CSV",
     "daterangepicker_start": "",
     "daterangepicker_end": "",
@@ -43,5 +43,26 @@ file.close()
 
 df = pd.read_csv('Density.csv', usecols = ['Date', 'Density (kg/m^3)'])
 df.rename(columns = {'Density (kg/m^3)':'Density'}, inplace = True)
+
+print("Enter your search operation (greater than, lesser than, equal to, greater than equal to, etc:")
+operation = input()
+
+operation.title()
+
+print("Enter your limit value:")
+limit = input()
+
+if operation == 'Greater Than' or operation == '>':
+    df.drop(df[df.Density <= float(limit)].index, inplace = True)
+elif operation == 'Lesser Than' or operation == '<':
+    df.drop(df[df.Density >= float(limit)].index, inplace = True)
+elif operation == 'Greater Than Equal To' or operation == '>=':
+    df.drop(df[df.Density < float(limit)].index, inplace = True)
+elif operation == 'Lesser Than Equal To' or operation == '<=':
+    df.drop(df[df.Density > float(limit)].index, inplace = True)
+elif operation == 'Equal To' or operation == '=' or operation == '==':
+    df.drop(df[df.Density != float(limit)].index, inplace = True)
+
+print(df)
 
 os.remove('Density.csv')
