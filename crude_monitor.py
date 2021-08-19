@@ -63,6 +63,8 @@ elif operation == 'Lesser Than Equal To' or operation == '<=':
 elif operation == 'Equal To' or operation == '=' or operation == '==':
     df.drop(df[df.Density != float(limit)].index, inplace = True)
 
+df = df.reset_index(drop = True)
+
 print(df)
 
 os.remove('Density.csv')
