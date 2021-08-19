@@ -38,12 +38,16 @@ curl -0 https://bootstrap.pypa.io/get-pip.py
 sudo python3 get-pip.py
 ```
 
-5. #### Use pip to install the libraries required for the script.
+5. #### a) Use pip to install the libraries required for the script.
 ```bash
 pip3 install pandas
 ```
 ```bash
 pip3 install requests
+```
+5. #### b) Or, you can navigate to the folder with the requirements.txt file and run the following command.
+```bash
+pip3 install -r requirements.txt
 ```
 
 
