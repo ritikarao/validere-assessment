@@ -65,6 +65,9 @@ elif operation == 'Equal To' or operation == '=' or operation == '==':
 
 df = df.reset_index(drop = True)
 
-print(df)
+if df.empty:
+    print("No results for the dates and condition specified!")
+else:
+    print(df)
 
 os.remove('Density.csv')
