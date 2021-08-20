@@ -87,6 +87,6 @@ arg3 - Start date in the format 'YYYY-MM-DD'
 
 arg4 - End date in the format 'YYYY-MM-DD'
 
-arg5 - Operation in the format 'greater_than' or '>', 'lesser_than_equal_to' or '<=', etc.
+arg5 - Operation in the format 'greater_than', 'lesser_than_equal_to', etc.
 
 arg6 - Floating point value
