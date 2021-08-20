@@ -45,15 +45,34 @@ pip3 install pandas
 ```bash
 pip3 install requests
 ```
-5. #### b) Or, you can navigate to the folder with the requirements.txt file and run the following command.
+5. #### b) Or, you can navigate on terminal to the folder with the requirements.txt file and run the following command.
 ```bash
 pip3 install -r requirements.txt
 ```
 
 
 ## Running The Script
-
-Navigate to the folder on your computer where the crude_monitor.py python file is saved, and run the script with the following command:
+Before running the script, create a folder called saved_queries in the same location where your crude_monitor.py file is saved. Navigate to that folder on terminal and run the following command.
 ```bash
-python3 crude_monitor.py
+mkdir saved_queries
 ```
+
+Navigate on terminal to the folder on your computer where the crude_monitor.py python file is saved, and run the script with the following command. 
+```bash
+python3 crude_monitor.py --crude_acronym 'arg1' --name 'arg2' --start_date 'arg3' --end_date 'arg4' --operation 'arg5' --limit arg6
+```
+Or
+```bash
+python3 crude_monitor.py -c 'arg1' -n 'arg2' -i 'arg3' -f 'arg4' -o 'arg5' -l arg6
+```
+arg1 - Crude oil acronym
+
+arg2 - Crude oil name
+
+arg3 - Start date in the format 'YYYY-MM-DD'
+
+arg4 - End date in the format 'YYYY-MM-DD'
+
+arg5 - Operation in the format 'greater_than' or '>', 'lesser_than_equal_to' or '<=', etc.
+
+arg6 - Floating point value
