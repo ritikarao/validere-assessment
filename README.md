@@ -38,22 +38,55 @@ curl -0 https://bootstrap.pypa.io/get-pip.py
 sudo python3 get-pip.py
 ```
 
-5. #### a) Use pip to install the libraries required for the script.
+5. #### a) Install the virtual environment in the folder containing the script, after navigating to it.
 ```bash
-pip3 install pandas
+pip3 install virtualenv
+```
+5. #### b) Or
+```bash
+sudo pip3 install virtualenv
+```
+
+6. #### Set up the virtual environment inside the folder that contains the script.
+```bash
+virtualenv env
+```
+
+7. #### a) Use pip to install the libraries required for the script.
+```bash
+env/bin/pip3 install pandas
 ```
 ```bash
-pip3 install requests
+env/bin/pip3 install requests
 ```
-5. #### b) Or, you can navigate to the folder with the requirements.txt file and run the following command.
+7. #### b) Or, you can navigate on terminal to the folder with the requirements.txt file and run the following command.
 ```bash
-pip3 install -r requirements.txt
+env/bin/pip3 install -r requirements.txt
 ```
 
 
 ## Running The Script
-
-Navigate to the folder on your computer where the crude_monitor.py python file is saved, and run the script with the following command:
+Before running the script, create a folder called saved_queries in the same location where your crude_monitor.py file is saved. Navigate to that folder on terminal and run the following command.
 ```bash
-python3 crude_monitor.py
+mkdir saved_queries
 ```
+
+Navigate on terminal to the folder on your computer where the crude_monitor.py python file is saved, and run the script with the following command. 
+```bash
+env/bin/python3 crude_monitor.py --crude_acronym 'arg1' --name 'arg2' --start_date 'arg3' --end_date 'arg4' --operation 'arg5' --limit arg6
+```
+Or
+```bash
+env/bin/python3 crude_monitor.py -c 'arg1' -n 'arg2' -i 'arg3' -f 'arg4' -o 'arg5' -l arg6
+```
+arg1 - Crude oil acronym
+
+arg2 - Crude oil name
+
+arg3 - Start date in the format 'YYYY-MM-DD'
+
+arg4 - End date in the format 'YYYY-MM-DD'
+
+arg5 - Operation in the format 'greater_than' or '>', 'lesser_than_equal_to' or '<=', etc.
+
+arg6 - Floating point value
