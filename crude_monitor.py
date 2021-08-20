@@ -10,7 +10,7 @@ ap.add_argument("-c", "--crude_acronym", required = True, help = "crude oil acro
 ap.add_argument("-n", "--name", required = True, help = "crude oil name")
 ap.add_argument("-i", "--start_date", required = True, help = "start date in the format YYYY-MM-DD")
 ap.add_argument("-f", "--end_date", required = True, help = "end date in the format YYYY-MM-DD")
-ap.add_argument("-o", "--operation", required = True, help = "operation in the format greater_than_equal_to or >=")
+ap.add_argument("-o", "--operation", required = True, help = "operation in the format greater_than_equal_to, lesser_than, etc.")
 ap.add_argument("-l", "--limit", required = True, help = "threshold value for density search")
 args = ap.parse_args()
 
@@ -70,15 +70,15 @@ except:
     df.rename(columns = {'Density (kg/m^3)':'Density'}, inplace = True)
 
 
-    if operation == 'greater_than' or operation == '>':
+    if operation == 'greater_than':
         df.drop(df[df.Density <= limit].index, inplace = True)
-    elif operation == 'lesser_than' or operation == '<':
+    elif operation == 'lesser_than':
         df.drop(df[df.Density >= limit].index, inplace = True)
-    elif operation == 'greater_than_equal_to' or operation == '>=':
+    elif operation == 'greater_than_equal_to':
         df.drop(df[df.Density < limit].index, inplace = True)
-    elif operation == 'lesser_than_equal_to' or operation == '<=':
+    elif operation == 'lesser_than_equal_to':
         df.drop(df[df.Density > limit].index, inplace = True)
-    elif operation == 'equal_to' or operation == '=' or operation == '==':
+    elif operation == 'equal_to':
         df.drop(df[df.Density != limit].index, inplace = True)
 
     df = df.reset_index(drop = True)
